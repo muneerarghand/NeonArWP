@@ -1,8 +1,8 @@
-// Neon Ark Warden Onboarding System - ER Diagram (Text Version)
-// This fully supports all menu actions in the assignment
+// Neon Ark Warden Onboarding System - ER Diagram
+// Supports all Admin console menus
 
 Table wardens {
-  warden_id bigserial [primary key]
+  warden_id bigserial [pk]
   first_name varchar(100) [not null]
   last_name varchar(100)
   email varchar(255) [unique, not null]
@@ -18,27 +18,27 @@ Table wardens {
 }
 
 Table roles {
-  role_id serial [primary key]
+  role_id serial [pk]
   role_name varchar(50) [unique, not null]
 }
 
 Table employment_statuses {
-  employment_status_id serial [primary key]
+  employment_status_id serial [pk]
   status_name varchar(50) [unique, not null]
 }
 
 Table clearance_levels {
-  clearance_level_id serial [primary key]
+  clearance_level_id serial [pk]
   level_name varchar(50) [unique, not null]
 }
 
 Table identifier_types {
-  identifier_type_id serial [primary key]
+  identifier_type_id serial [pk]
   type_name varchar(50) [unique, not null]
 }
 
 Table certifications {
-  certification_id bigserial [primary key]
+  certification_id bigserial [pk]
   warden_id bigint [ref: > wardens.warden_id]
   certification_name varchar(200) [not null]
   date_earned date [not null]
