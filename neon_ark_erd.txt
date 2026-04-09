@@ -1,0 +1,53 @@
+// Neon Ark Warden Onboarding System - ER Diagram (Text Version)
+// This fully supports all menu actions in the assignment
+
+Table wardens {
+  warden_id bigserial [primary key]
+  first_name varchar(100) [not null]
+  last_name varchar(100)
+  email varchar(255) [unique, not null]
+  identifier_type_id int [ref: > identifier_types.identifier_type_id]
+  identifier_value varchar(100) [not null]
+  role_id int [ref: > roles.role_id]
+  employment_status_id int [ref: > employment_statuses.employment_status_id]
+  clearance_level_id int [ref: > clearance_levels.clearance_level_id]
+  start_date date [not null]
+  end_date date
+  created_at timestamp [default: now()]
+  updated_at timestamp [default: now()]
+}
+
+Table roles {
+  role_id serial [primary key]
+  role_name varchar(50) [unique, not null]
+}
+
+Table employment_statuses {
+  employment_status_id serial [primary key]
+  status_name varchar(50) [unique, not null]
+}
+
+Table clearance_levels {
+  clearance_level_id serial [primary key]
+  level_name varchar(50) [unique, not null]
+}
+
+Table identifier_types {
+  identifier_type_id serial [primary key]
+  type_name varchar(50) [unique, not null]
+}
+
+Table certifications {
+  certification_id bigserial [primary key]
+  warden_id bigint [ref: > wardens.warden_id]
+  certification_name varchar(200) [not null]
+  date_earned date [not null]
+  expiration_date date
+  is_expired boolean [default: false]
+}
+
+Ref: wardens.identifier_type_id > identifier_types.identifier_type_id
+Ref: wardens.role_id > roles.role_id
+Ref: wardens.employment_status_id > employment_statuses.employment_status_id
+Ref: wardens.clearance_level_id > clearance_levels.clearance_level_id
+Ref: certifications.warden_id > wardens.warden_id
