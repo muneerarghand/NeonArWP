@@ -1,11 +1,32 @@
 # Neon Ark Warden Onboarding System
 
-PostgreSQL database for the Neon Ark Admin Warden Onboarding Console.
+## Overview
+PostgreSQL database for managing wardens in the Neon Ark system.
+
+---
 
 ## Deliverables
-- `neon_ark.sql` — Complete schema, sample data (10+ wardens), lookup tables, and bonus triggers
-- `neon_ark_erd.png` — Visual Entity Relationship Diagram
+
+- neon_ark.sql → full database schema + data + trigger
+- neon_ark_erd.png → ERD diagram
+
+---
 
 ## How to Run
-```bash
-psql -U yourusername -d yourdatabase -f neon_ark.sql
+
+1. Create database:
+   CREATE DATABASE neon_ark;
+
+2. Run SQL file:
+   psql -U postgres -d neon_ark -f neon_ark.sql
+
+---
+
+## Tables
+
+- roles
+- employment_statuses
+- clearance_levels
+- identifier_types
+- wardens
+- certifications
